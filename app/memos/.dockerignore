@@ -9,7 +9,6 @@ coverage.out
 /.worktrees/
 
 # Not used by the image build
-/web/
 /docs/
 /.github/
 *.md

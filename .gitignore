@@ -23,3 +23,12 @@ dist/
 # when --config.store-dir is set without an existing store; it contains a
 # symlink back to the workspace.
 .pnpm-store/
+
+# Terraform downloaded files and local backups
+**/.terraform/
+**/.terraform-backup/
+
+# Terraform state and saved plans
+*.tfstate
+*.tfstate.*
+*.tfplan

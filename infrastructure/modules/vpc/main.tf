@@ -1,6 +1,9 @@
 # creating a VPC resource with the specified CIDR block and name tag (terraform reference)
 resource "aws_vpc" "main" {
   cidr_block = var.vpc_cidr
+  enable_dns_support   = true
+  enable_dns_hostnames = true   
+
 
   # adding a tag to the vpc resource so it displays the name in the AWS console
   tags = {
@@ -99,6 +102,8 @@ resource "aws_route_table_association" "private2" {
 resource "aws_nat_gateway" "main1" {
   allocation_id = aws_eip.main1.id
   subnet_id     = aws_subnet.public1.id
+
+  depends_on = [aws_internet_gateway.main] # Ensure the NAT gateway is created after the internet gateway
 }
 
 # creating an Elastic IP resource for the NAT gateway in public subnet 1
@@ -111,6 +116,8 @@ resource "aws_eip" "main1" {
 resource "aws_nat_gateway" "main2" {
   allocation_id = aws_eip.main2.id
   subnet_id     = aws_subnet.public2.id
+
+  depends_on = [aws_internet_gateway.main] # Ensure the NAT gateway is created after the internet gateway
 }
 
 # creating an Elastic IP resource for the NAT gateway in public subnet 2

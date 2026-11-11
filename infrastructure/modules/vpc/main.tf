@@ -15,6 +15,11 @@ resource "aws_subnet" "public1" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.publicsubnet1_cidr
   availability_zone = var.publicsubnet1_az
+  
+  tags = {
+    Name = "eks-public1"
+    "kubernetes.io/role/elb" = "1"
+  }
 }
 
 # creating a public subnet resource with the specified CIDR block and availability zone
@@ -22,6 +27,12 @@ resource "aws_subnet" "public2" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.publicsubnet2_cidr
   availability_zone = var.publicsubnet2_az
+
+  tags = {
+    Name = "eks-public2"
+    "kubernetes.io/role/elb" = "1"
+
+  }
 }
 
 # creating a private subnet resource with the specified CIDR block and availability zone
@@ -29,6 +40,11 @@ resource "aws_subnet" "private1" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.privatesubnet1_cidr
   availability_zone = var.privatesubnet1_az
+
+  tags = {
+    Name = "eks-private1"
+    "kubernetes.io/role/internal-elb" = "1"
+  }
 }
 
 # creating a private subnet resource with the specified CIDR block and availability zone
@@ -36,6 +52,11 @@ resource "aws_subnet" "private2" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.privatesubnet2_cidr
   availability_zone = var.privatesubnet2_az
+
+  tags = {
+    Name = "eks-private2"
+    "kubernetes.io/role/internal-elb" = "1"
+  }
 }
 
 # creating an internet gateway resource and associating it with the VPC

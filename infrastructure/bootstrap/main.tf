@@ -60,7 +60,6 @@ variable "ecr_name" {
 
 
 # output the ECR repository URL
-
 output "ecr_repository_url" {
   description = "The URL of the ECR repository"
   value       = aws_ecr_repository.memos.repository_url

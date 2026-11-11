@@ -1,8 +1,8 @@
 # creating a VPC resource with the specified CIDR block and name tag (terraform reference)
 resource "aws_vpc" "main" {
-  cidr_block = var.vpc_cidr
+  cidr_block           = var.vpc_cidr
   enable_dns_support   = true
-  enable_dns_hostnames = true   
+  enable_dns_hostnames = true
 
 
   # adding a tag to the vpc resource so it displays the name in the AWS console
@@ -15,9 +15,9 @@ resource "aws_subnet" "public1" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.publicsubnet1_cidr
   availability_zone = var.publicsubnet1_az
-  
+
   tags = {
-    Name = "eks-public1"
+    Name                     = "eks-public1"
     "kubernetes.io/role/elb" = "1"
   }
 }
@@ -29,7 +29,7 @@ resource "aws_subnet" "public2" {
   availability_zone = var.publicsubnet2_az
 
   tags = {
-    Name = "eks-public2"
+    Name                     = "eks-public2"
     "kubernetes.io/role/elb" = "1"
 
   }
@@ -42,7 +42,7 @@ resource "aws_subnet" "private1" {
   availability_zone = var.privatesubnet1_az
 
   tags = {
-    Name = "eks-private1"
+    Name                              = "eks-private1"
     "kubernetes.io/role/internal-elb" = "1"
   }
 }
@@ -54,7 +54,7 @@ resource "aws_subnet" "private2" {
   availability_zone = var.privatesubnet2_az
 
   tags = {
-    Name = "eks-private2"
+    Name                              = "eks-private2"
     "kubernetes.io/role/internal-elb" = "1"
   }
 }

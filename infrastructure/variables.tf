@@ -60,4 +60,21 @@ variable "privatesubnet2_cidr" {
   default     = "10.0.4.0/24"
 }
 
-#Variables for
+#Variables for EKS module
+
+variable "eks_version" {
+  description = "The version of EKS to use"
+  type        = string
+  default     = "1.37"
+}
+
+variable "cluster_role_arn" {
+  description = "The ARN of the EKS cluster role"
+  type        = string
+}
+
+variable "worker_role_arn" {
+  description = "The ARN of the EKS worker node role"
+  type        = string
+}
+

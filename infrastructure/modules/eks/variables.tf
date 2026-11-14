@@ -1,0 +1,19 @@
+variable "cluster_role_arn" {
+  description = "The ARN of the EKS cluster role"
+  type        = string
+}
+
+variable "private_subnet_ids" {
+  description = "The IDs of the private subnets"
+  type        = list(string)
+}
+
+variable "eks_version" {
+  description = "The version of EKS to use"
+  type        = string
+}
+
+variable "worker_role_arn" {
+  description = "The ARN of the EKS worker node role"
+  type        = string
+}

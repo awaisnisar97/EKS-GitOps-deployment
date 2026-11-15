@@ -17,3 +17,8 @@ variable "worker_role_arn" {
   description = "The ARN of the EKS worker node role"
   type        = string
 }
+
+variable "eks_cni_role_arn" {
+  description = "The ARN of the EKS CNI role"
+  type        = string
+}

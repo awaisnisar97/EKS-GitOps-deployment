@@ -35,11 +35,15 @@ resource "aws_eks_addon" "vpc_cni" {
   addon_name   = "vpc-cni"
 }
 
-resource "pod_identity_association" "vpc_cni_association" {
+resource "aws_eks_pod_identity_association" "vpc_cni_association" {
   cluster_name    = aws_eks_cluster.EKS_cluster.name
   namespace       = "kube-system"
   service_account = "aws-node"
-  role_arn        = var.worker_role_arn
+  role_arn        = var.eks_cni_role_arn
 }
 
+resource "aws_eks_addon" "pod_identity_agent" {
+  cluster_name = aws_eks_cluster.EKS_cluster.name
+  addon_name   = "eks-pod-identity-agent"
+}
  

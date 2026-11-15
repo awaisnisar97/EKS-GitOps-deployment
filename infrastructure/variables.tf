@@ -68,13 +68,8 @@ variable "eks_version" {
   default     = "1.37"
 }
 
-variable "cluster_role_arn" {
-  description = "The ARN of the EKS cluster role"
-  type        = string
-}
 
-variable "worker_role_arn" {
-  description = "The ARN of the EKS worker node role"
-  type        = string
-}
+
+
+
 

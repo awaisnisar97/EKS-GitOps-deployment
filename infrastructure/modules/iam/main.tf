@@ -60,8 +60,8 @@ resource "aws_iam_role" "eks_cni_role" {
     Statement = [
       {
         Action = [
-            "sts:AssumeRole",
-            "sts:TagSession"
+          "sts:AssumeRole",
+          "sts:TagSession"
         ]
         Effect = "Allow"
         Principal = {

@@ -7,8 +7,8 @@ resource "aws_eks_cluster" "EKS_cluster" {
     bootstrap_cluster_creator_admin_permissions = true
   }
 
-  version  = var.eks_version
-    
+  version = var.eks_version
+
   vpc_config {
     subnet_ids = var.private_subnet_ids
   }
@@ -17,7 +17,7 @@ resource "aws_eks_cluster" "EKS_cluster" {
 resource "aws_eks_node_group" "EKS_node_group" {
   cluster_name    = aws_eks_cluster.EKS_cluster.name
   node_group_name = "EKS-node-group"
-  node_role_arn   = module.iam.eks_node_group_role_arn
+  node_role_arn   = var.worker_role_arn
   subnet_ids      = var.private_subnet_ids
 
   scaling_config {
@@ -30,3 +30,16 @@ resource "aws_eks_node_group" "EKS_node_group" {
 
 }
 
+resource "aws_eks_addon" "vpc_cni" {
+  cluster_name = aws_eks_cluster.EKS_cluster.name
+  addon_name   = "vpc-cni"
+}
+
+resource "pod_identity_association" "vpc_cni_association" {
+  cluster_name    = aws_eks_cluster.EKS_cluster.name
+  namespace       = "kube-system"
+  service_account = "aws-node"
+  role_arn        = var.worker_role_arn
+}
+
+ 

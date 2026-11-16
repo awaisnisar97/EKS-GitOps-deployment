@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "EKS_cluster" {
-  name     = "EKS-cluster"
+  name     = "eks-cluster"
   role_arn = var.cluster_role_arn
 
   access_config {

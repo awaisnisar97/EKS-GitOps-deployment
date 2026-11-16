@@ -47,3 +47,12 @@ resource "aws_eks_addon" "pod_identity_agent" {
   addon_name   = "eks-pod-identity-agent"
 }
  
+resource "aws_eks_addon" "core_dns" {
+  cluster_name = aws_eks_cluster.EKS_cluster.name
+  addon_name   = "coredns"
+}
+
+resource "aws_eks_addon" "kube_proxy" {
+  cluster_name = aws_eks_cluster.EKS_cluster.name
+  addon_name   = "kube-proxy"
+}

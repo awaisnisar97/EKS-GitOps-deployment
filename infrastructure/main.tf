@@ -28,3 +28,9 @@ module "eks" {
      depends_on = [module.vpc, module.iam]
   
 }
+
+module "rds" {
+  source = "./modules/rds"
+
+  private_subnet_ids = module.vpc.private_subnet_ids
+}

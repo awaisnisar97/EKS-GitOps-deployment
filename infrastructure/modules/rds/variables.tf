@@ -68,15 +68,6 @@ variable "skip_final_snapshot" {
   type        = bool
 }
 
-variable "from_port" {
-  description = "The starting port of the port range for the RDS instance"
-  type        = number
-}
-
-variable "to_port" {
-  description = "The ending port of the port range for the RDS instance"
-  type        = number
-}
 
 variable "ip_protocol" {
   description = "The protocol for the RDS instance"
@@ -86,6 +77,11 @@ variable "ip_protocol" {
 variable "username" {
   description = "The master username for the RDS instance"
   type        = string
+}
+
+variable "port" {
+  description = "The port for the RDS instance"
+  type        = number
 }
 
 

@@ -35,8 +35,6 @@ module "rds" {
   private_subnet_ids        = module.vpc.private_subnet_ids
   vpc_id                    = module.vpc.vpc_id
   cluster_security_group_id = module.eks.cluster_security_group_id
-  from_port                 = var.from_port
-  to_port                   = var.to_port
   ip_protocol               = var.ip_protocol
   allocated_storage         = var.allocated_storage
   storage_type              = var.storage_type
@@ -50,4 +48,6 @@ module "rds" {
   parameter_group_name      = var.parameter_group_name
   skip_final_snapshot       = var.skip_final_snapshot
   username                  = var.username
+  port                      = var.port
 }
+

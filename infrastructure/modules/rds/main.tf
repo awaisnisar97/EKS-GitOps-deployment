@@ -20,6 +20,8 @@ resource "aws_db_instance" "rds" {
   storage_encrypted           = true
   username                    = var.username
   manage_master_user_password = true
+  port                        = var.port
+  multi_az                    = false
 }
 
 resource "aws_security_group" "rds" {
@@ -31,8 +33,8 @@ resource "aws_security_group" "rds" {
 resource "aws_vpc_security_group_ingress_rule" "rds" {
   security_group_id = aws_security_group.rds.id
 
-  from_port                    = var.from_port
+  from_port                    = var.port
   ip_protocol                  = var.ip_protocol
-  to_port                      = var.to_port
+  to_port                      = var.port
   referenced_security_group_id = var.cluster_security_group_id
 }

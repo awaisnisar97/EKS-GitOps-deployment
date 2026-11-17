@@ -135,17 +135,6 @@ variable "skip_final_snapshot" {
   default     = true
 }
 
-variable "from_port" {
-  description = "The starting port for the security group rule"
-  type        = number
-  default     = 5432
-}
-
-variable "to_port" {
-  description = "The ending port for the security group rule"
-  type        = number
-  default     = 5432
-}
 
 variable "ip_protocol" {
   description = "The IP protocol for the security group rule"
@@ -159,5 +148,9 @@ variable "username" {
   default     = "memosuser"
 }
 
-
+variable "port" {
+  description = "The port for the RDS instance"
+  type        = number
+  default     = 5432
+}
 

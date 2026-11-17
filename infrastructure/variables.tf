@@ -106,18 +106,6 @@ variable "db_name" {
   default     = "mydb"
 }
 
-variable "db_username" {
-  description = "The username for the database"
-  type        = string
-  default     = "admin"
-}
-
-variable "db_password" {
-  description = "The password for the database"
-  type        = string
-  default     = "admin123"
-}
-
 variable "db_parameter_group_name" {
   description = "The name of the DB parameter group to associate with the RDS instance"
   type        = string

@@ -24,8 +24,12 @@ resource "aws_security_group" "rds" {
   description = "Security group for RDS instance"
   vpc_id      = var.vpc_id
 }
-  ingress {
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    cidr_blocks = [var.vpc_cidr]
+
+resource "aws_vpc_security_group_ingress_rule" "rds" {
+  security_group_id = aws_security_group.rds.id
+
+  from_port                    = var.from_port
+  ip_protocol                  = var.ip_protocol
+  to_port                      = var.to_port
+  referenced_security_group_id = var.cluster_security_group_id
+}

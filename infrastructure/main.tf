@@ -25,14 +25,28 @@ module "eks" {
   eks_version        = var.eks_version
   worker_role_arn    = module.iam.eks_node_group_role_arn
   eks_cni_role_arn   = module.iam.eks_cni_role_arn
-     depends_on = [module.vpc, module.iam]
-  
+  depends_on         = [module.vpc, module.iam]
+
 }
 
 module "rds" {
   source = "./modules/rds"
 
-  private_subnet_ids = module.vpc.private_subnet_ids
-    vpc_id             = module.vpc.vpc_id
-    cluster_security_group_id = module.eks.cluster_security_group_id
+  private_subnet_ids        = module.vpc.private_subnet_ids
+  vpc_id                    = module.vpc.vpc_id
+  cluster_security_group_id = module.eks.cluster_security_group_id
+  from_port                 = var.from_port
+  to_port                   = var.to_port
+  ip_protocol               = var.ip_protocol
+  allocated_storage         = var.allocated_storage
+  storage_type              = var.storage_type
+  db_name                   = var.db_name
+  engine                    = var.engine
+  engine_version            = var.engine_version
+  instance_class            = var.instance_class
+  backup_retention_period   = var.backup_retention_period
+  publicly_accessible       = var.publicly_accessible
+  deletion_protection       = var.deletion_protection
+  parameter_group_name      = var.parameter_group_name
+  skip_final_snapshot       = var.skip_final_snapshot
 }

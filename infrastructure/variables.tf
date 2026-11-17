@@ -69,77 +69,10 @@ variable "eks_version" {
 }
 
 #Variables for RDS module
-
-variable "rds_allocated_storage" {
-  description = "The amount of storage to allocate for the RDS instance"
-  type        = number
-  default     = 20
-}
-
-variable "rds_instance_class" {
-  description = "The instance class for the RDS instance"
-  type        = string
-  default     = "db.t3.micro"
-}
-
-variable "rds_engine" {
-  description = "The database engine for the RDS instance"
-  type        = string
-  default     = "mysql"
-}
-
-variable "rds_engine_version" {
-  description = "The version of the database engine for the RDS instance"
-  type        = string
-  default     = "8.0"
-}
-
-variable "rds_backup_retention_period" {
-  description = "The number of days to retain backups for the RDS instance"
-  type        = number
-  default     = 7
-}
-
 variable "db_name" {
   description = "The name of the database to create when the RDS instance is created"
   type        = string
   default     = "mydb"
-}
-
-variable "db_parameter_group_name" {
-  description = "The name of the DB parameter group to associate with the RDS instance"
-  type        = string
-  default     = "default.mysql8.0"
-}
-
-variable "db_skip_final_snapshot" {
-  description = "Whether to skip the final snapshot when deleting the RDS instance"
-  type        = bool
-  default     = true
-}
-
-variable "db_deletion_protection" {
-  description = "Whether to enable deletion protection for the RDS instance"
-  type        = bool
-  default     = false
-}
-
-variable "db_publicly_accessible" {
-  description = "Whether the RDS instance is publicly accessible"
-  type        = bool
-  default     = false
-}
-
-variable "db_storage_type" {
-  description = "The storage type for the RDS instance"
-  type        = string
-  default     = "gp3"
-}
-
-variable "db_multi_az" {
-  description = "Whether the RDS instance is multi-AZ"
-  type        = bool
-  default     = false
 }
 
 variable "allocated_storage" {

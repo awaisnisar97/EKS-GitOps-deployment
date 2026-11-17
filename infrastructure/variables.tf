@@ -153,5 +153,11 @@ variable "ip_protocol" {
   default     = "tcp"
 }
 
+variable "username" {
+  description = "The username for the RDS instance"
+  type        = string
+  default     = "memosuser"
+}
+
 
 

@@ -49,4 +49,5 @@ module "rds" {
   deletion_protection       = var.deletion_protection
   parameter_group_name      = var.parameter_group_name
   skip_final_snapshot       = var.skip_final_snapshot
+  username                  = var.username
 }

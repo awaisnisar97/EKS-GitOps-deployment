@@ -17,6 +17,9 @@ resource "aws_db_instance" "rds" {
   db_subnet_group_name    = aws_db_subnet_group.rds.name
   parameter_group_name    = var.parameter_group_name
   skip_final_snapshot     = var.skip_final_snapshot
+  storage_encrypted       = true
+  username                = var.username
+  manage_master_user_password = true
 }
 
 resource "aws_security_group" "rds" {

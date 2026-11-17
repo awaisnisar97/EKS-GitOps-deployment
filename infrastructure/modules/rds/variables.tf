@@ -83,3 +83,9 @@ variable "ip_protocol" {
   type        = string
 }
 
+variable "username" {
+  description = "The master username for the RDS instance"
+  type        = string
+}
+
+

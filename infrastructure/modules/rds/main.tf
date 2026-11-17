@@ -18,3 +18,14 @@ resource "aws_db_instance" "rds" {
   parameter_group_name    = "default.postgres17"
   skip_final_snapshot     = true
 }
+
+resource "aws_security_group" "rds" {
+  name        = "rds-security-group"
+  description = "Security group for RDS instance"
+  vpc_id      = var.vpc_id
+}
+  ingress {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = [var.vpc_cidr]

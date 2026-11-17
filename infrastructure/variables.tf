@@ -96,7 +96,7 @@ variable "engine" {
 variable "engine_version" {
   description = "The version of the database engine for the RDS instance"
   type        = string
-  default     = "17"
+  default     = "17.11"
 }
 
 variable "instance_class" {

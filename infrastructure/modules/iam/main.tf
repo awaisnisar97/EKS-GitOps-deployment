@@ -77,5 +77,27 @@ resource "aws_iam_role_policy_attachment" "eks_cni_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
 }
 
+resource "aws_iam_role" "load_balancer_controller_role" {
+  name = "eks-load-balancer-controller-role"
 
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "sts:AssumeRole",
+          "sts:TagSession"
+        ]
+        Effect = "Allow"
+        Principal = {
+          Service = "pods.eks.amazonaws.com"
+        }
+      },
+    ]
+  })
+}
 
+resource "aws_iam_role_policy_attachment" "load_balancer_controller_policy" {
+  role       = aws_iam_role.load_balancer_controller_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSLoadBalancerControllerIAMPolicy"
+} 

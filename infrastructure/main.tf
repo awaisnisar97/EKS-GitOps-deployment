@@ -25,6 +25,7 @@ module "eks" {
   eks_version        = var.eks_version
   worker_role_arn    = module.iam.eks_node_group_role_arn
   eks_cni_role_arn   = module.iam.eks_cni_role_arn
+  load_balancer_arn  = module.iam.load_balancer_controller_role_arn
   depends_on         = [module.vpc, module.iam]
 
 }

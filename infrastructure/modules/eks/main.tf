@@ -56,3 +56,10 @@ resource "aws_eks_addon" "kube_proxy" {
   cluster_name = aws_eks_cluster.eks_cluster.name
   addon_name   = "kube-proxy"
 }
+
+resource "aws_eks_pod_identity_association" "load_balancer_controller_association" {
+  cluster_name    = aws_eks_cluster.eks_cluster.name
+  namespace       = "kube-system"
+  service_account = "aws-load-balancer-controller"
+  role_arn        = var.load_balancer_controller_role_arn
+}

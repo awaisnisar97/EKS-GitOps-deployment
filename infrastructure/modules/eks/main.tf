@@ -63,3 +63,10 @@ resource "aws_eks_pod_identity_association" "load_balancer_controller_associatio
   service_account = "aws-load-balancer-controller"
   role_arn        = var.load_balancer_controller_role_arn
 }
+
+resource "aws_eks_pod_identity_association" "external_dns_association" {
+  cluster_name    = aws_eks_cluster.eks_cluster.name
+  namespace       = "kube-system"
+  service_account = "external-dns"
+  role_arn        = var.external_dns_role_arn
+}

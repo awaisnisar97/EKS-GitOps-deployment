@@ -97,7 +97,13 @@ resource "aws_iam_role" "load_balancer_controller_role" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "load_balancer_controller_policy" {
+resource "aws_iam_policy" "load_balancer_controller_policy" {
+  name        = "eks-load-balancer-controller-policy"
+  description = "Policy for the AWS Load Balancer Controller"
+  policy      = file("${path.module}/policies/load_balancer_controller_policy.json")
+}
+
+resource "aws_iam_role_policy_attachment" "load_balancer_controller_policy_attachment" {
   role       = aws_iam_role.load_balancer_controller_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AWSLoadBalancerControllerIAMPolicy"
-} 
+  policy_arn = aws_iam_policy.load_balancer_controller_policy.arn
+}

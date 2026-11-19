@@ -2,6 +2,9 @@ resource "aws_eks_cluster" "eks_cluster" {
   name     = "eks-cluster"
   role_arn = var.cluster_role_arn
 
+  depends_on = [aws_cloudwatch_log_group.eks_cluster_log_group]
+  enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+
   access_config {
     authentication_mode                         = "API_AND_CONFIG_MAP"
     bootstrap_cluster_creator_admin_permissions = true
@@ -76,4 +79,9 @@ resource "aws_eks_pod_identity_association" "cert_manager_association" {
   namespace       = "cert-manager"
   service_account = "cert-manager"
   role_arn        = var.cert_manager_role_arn
+}
+
+resource "aws_cloudwatch_log_group" "eks_cluster_log_group" {
+  name              = "/aws/eks/eks-cluster/cluster"
+  retention_in_days = 5
 }

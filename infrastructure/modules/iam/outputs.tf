@@ -23,3 +23,7 @@ output "external_dns_role_arn" {
   value       = aws_iam_role.external_dns_role.arn
 }
 
+output "cert_manager_role_arn" {
+  description = "The ARN of the EKS cert-manager role"
+  value       = aws_iam_role.cert_manager_role.arn
+}

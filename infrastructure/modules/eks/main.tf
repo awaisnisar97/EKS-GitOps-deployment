@@ -70,3 +70,10 @@ resource "aws_eks_pod_identity_association" "external_dns_association" {
   service_account = "external-dns"
   role_arn        = var.external_dns_role_arn
 }
+
+resource "aws_eks_pod_identity_association" "cert_manager_association" {
+  cluster_name    = aws_eks_cluster.eks_cluster.name
+  namespace       = "cert-manager"
+  service_account = "cert-manager"
+  role_arn        = var.cert_manager_role_arn
+}

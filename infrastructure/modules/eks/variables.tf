@@ -32,3 +32,8 @@ variable "external_dns_role_arn" {
   description = "The ARN of the EKS External DNS role"
   type        = string
 }
+
+variable "cert_manager_role_arn" {
+  description = "The ARN of the EKS cert-manager role"
+  type        = string
+}   

@@ -27,6 +27,7 @@ module "eks" {
   eks_cni_role_arn                  = module.iam.eks_cni_role_arn
   load_balancer_controller_role_arn = module.iam.load_balancer_controller_role_arn
   external_dns_role_arn             = module.iam.external_dns_role_arn
+  cert_manager_role_arn             = module.iam.cert_manager_role_arn
   depends_on                        = [module.vpc, module.iam]
 
 }

@@ -17,3 +17,9 @@ output "load_balancer_controller_role_arn" {
   description = "The ARN of the EKS Load Balancer Controller role"
   value       = aws_iam_role.load_balancer_controller_role.arn
 }
+
+output "external_dns_role_arn" {
+  description = "The ARN of the EKS External DNS role"
+  value       = aws_iam_role.external_dns_role.arn
+}
+

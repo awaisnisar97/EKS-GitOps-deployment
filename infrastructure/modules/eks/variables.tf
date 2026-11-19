@@ -27,3 +27,8 @@ variable "load_balancer_controller_role_arn" {
   description = "The ARN of the EKS Load Balancer Controller role"
   type        = string
 }
+
+variable "external_dns_role_arn" {
+  description = "The ARN of the EKS External DNS role"
+  type        = string
+}

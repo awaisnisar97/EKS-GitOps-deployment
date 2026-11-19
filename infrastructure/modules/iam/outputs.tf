@@ -12,3 +12,8 @@ output "eks_cni_role_arn" {
   description = "The ARN of the EKS CNI role"
   value       = aws_iam_role.eks_cni_role.arn
 }
+
+output "load_balancer_controller_role_arn" {
+  description = "The ARN of the EKS Load Balancer Controller role"
+  value       = aws_iam_role.load_balancer_controller_role.arn
+}

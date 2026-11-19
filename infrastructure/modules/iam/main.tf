@@ -131,23 +131,34 @@ resource "aws_iam_role" "external_dns_role" {
 resource "aws_iam_policy" "external_dns_policy" {
   name        = "eks-external-dns-policy"
   description = "Policy for the External DNS"
-  
-  policy      = jsonencode({
+
+  policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
-        Effect = "Allow"
-        Action = ["route53:ListHostedZones"]
+        Effect   = "Allow"
+        Action   = ["route53:ListHostedZones"]
         Resource = "*"
       },
       {
         Effect = "Allow"
-        Action = [  
-            "route53:ListResourceRecordSets",
-            "route53:ChangeResourceRecordSets"      
-          
+        Action = [
+          "route53:ListResourceRecordSets",
         ]
         Resource = "arn:aws:route53:::hostedzone/Z02915703VH7GHG3NWR0V"
+      },
+      {
+        Effect   = "Allow"
+        Action   = "route53:ChangeResourceRecordSets"
+        Resource = "arn:aws:route53:::hostedzone/Z02915703VH7GHG3NWR0V"
+        Condition = {
+          "ForAllValues:StringEquals" : {
+            "route53:ChangeResourceRecordSetsNormalizedRecordNames" = [
+              "eks.awaiscloud.click",
+              "a-eks.awaiscloud.click"
+            ]
+          }
+        }
       }
     ]
   })

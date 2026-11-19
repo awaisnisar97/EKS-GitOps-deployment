@@ -1,3 +1,5 @@
+# Values the RDS module makes available to the root module.
+
 output "address" {
   description = "The address of the RDS instance"
   value       = aws_db_instance.rds.address

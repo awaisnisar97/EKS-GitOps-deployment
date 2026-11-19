@@ -1,3 +1,4 @@
+# Values the VPC module makes available to the root module.
 output "vpc_id" {
   description = "The ID of the VPC"
   value       = aws_vpc.main.id

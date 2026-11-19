@@ -1,3 +1,4 @@
+# Input variables that the EKS module receives from the root module.
 variable "cluster_role_arn" {
   description = "The ARN of the EKS cluster role"
   type        = string

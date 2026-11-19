@@ -1,3 +1,5 @@
+# Input variables that the VPC module receives from the root module.
+
 variable "vpc_cidr" {
   description = "The CIDR block for the VPC"
   type        = string

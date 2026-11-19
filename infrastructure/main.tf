@@ -1,3 +1,5 @@
+#Passing the variables to the modules
+
 module "vpc" {
   source = "./modules/vpc"
 

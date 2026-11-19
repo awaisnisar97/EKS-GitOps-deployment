@@ -107,3 +107,48 @@ resource "aws_iam_role_policy_attachment" "load_balancer_controller_policy_attac
   role       = aws_iam_role.load_balancer_controller_role.name
   policy_arn = aws_iam_policy.load_balancer_controller_policy.arn
 }
+
+resource "aws_iam_role" "external_dns_role" {
+  name = "eks-external-dns-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "sts:AssumeRole",
+          "sts:TagSession"
+        ]
+        Effect = "Allow"
+        Principal = {
+          Service = "pods.eks.amazonaws.com"
+        }
+      },
+    ]
+  })
+}
+
+resource "aws_iam_policy" "external_dns_policy" {
+  name        = "eks-external-dns-policy"
+  description = "Policy for the External DNS"
+  
+  policy      = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = ["route53:ListHostedZones"]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [  
+            "route53:ListResourceRecordSets",
+            "route53:ChangeResourceRecordSets"      
+          
+        ]
+        Resource = "arn:aws:route53:::hostedzone/Z02915703VH7GHG3NWR0V"
+      }
+    ]
+  })
+}

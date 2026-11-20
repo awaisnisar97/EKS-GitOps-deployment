@@ -1,5 +1,4 @@
 
-
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "eks-cluster"
   role_arn = var.cluster_role_arn
@@ -18,8 +17,6 @@ resource "aws_eks_cluster" "eks_cluster" {
     subnet_ids = var.private_subnet_ids
   }
 }
-
-
 
 resource "aws_eks_node_group" "EKS_node_group" {
   cluster_name    = aws_eks_cluster.eks_cluster.name

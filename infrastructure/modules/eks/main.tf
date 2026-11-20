@@ -1,3 +1,5 @@
+
+
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "eks-cluster"
   role_arn = var.cluster_role_arn
@@ -17,6 +19,8 @@ resource "aws_eks_cluster" "eks_cluster" {
   }
 }
 
+
+
 resource "aws_eks_node_group" "EKS_node_group" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = "EKS-node-group"
@@ -33,10 +37,12 @@ resource "aws_eks_node_group" "EKS_node_group" {
 
 }
 
+
 resource "aws_eks_addon" "vpc_cni" {
   cluster_name = aws_eks_cluster.eks_cluster.name
   addon_name   = "vpc-cni"
 }
+
 
 resource "aws_eks_pod_identity_association" "vpc_cni_association" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
@@ -45,20 +51,24 @@ resource "aws_eks_pod_identity_association" "vpc_cni_association" {
   role_arn        = var.eks_cni_role_arn
 }
 
+
 resource "aws_eks_addon" "pod_identity_agent" {
   cluster_name = aws_eks_cluster.eks_cluster.name
   addon_name   = "eks-pod-identity-agent"
 }
+
 
 resource "aws_eks_addon" "core_dns" {
   cluster_name = aws_eks_cluster.eks_cluster.name
   addon_name   = "coredns"
 }
 
+
 resource "aws_eks_addon" "kube_proxy" {
   cluster_name = aws_eks_cluster.eks_cluster.name
   addon_name   = "kube-proxy"
 }
+
 
 resource "aws_eks_pod_identity_association" "load_balancer_controller_association" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
@@ -66,6 +76,7 @@ resource "aws_eks_pod_identity_association" "load_balancer_controller_associatio
   service_account = "aws-load-balancer-controller"
   role_arn        = var.load_balancer_controller_role_arn
 }
+
 
 resource "aws_eks_pod_identity_association" "external_dns_association" {
   cluster_name    = aws_eks_cluster.eks_cluster.name

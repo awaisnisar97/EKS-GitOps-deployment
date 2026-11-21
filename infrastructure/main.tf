@@ -55,10 +55,3 @@ module "rds" {
   username                  = var.username
   port                      = var.port
 }
-
-module "helm" {
-  source = "./modules/helm"
-
-  cluster_name             = module.eks.cluster_name
-
-}

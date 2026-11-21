@@ -31,7 +31,6 @@ resource "aws_eks_node_group" "EKS_node_group" {
   }
 
   instance_types = ["t3.medium"]
-
 }
 
 

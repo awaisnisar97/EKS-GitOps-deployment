@@ -3,7 +3,7 @@ resource "aws_eks_cluster" "eks_cluster" {
   name     = "eks-cluster"
   role_arn = var.cluster_role_arn
 
-  depends_on = [aws_cloudwatch_log_group.eks_cluster_log_group]
+  depends_on                = [aws_cloudwatch_log_group.eks_cluster_log_group]
   enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
   access_config {

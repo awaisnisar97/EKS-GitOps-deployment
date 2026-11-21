@@ -5,7 +5,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
 
-#Adding a tag to the vpc resource so it displays the name in the AWS console
+  #Adding a tag to the vpc resource so it displays the name in the AWS console
   tags = {
     Name = var.vpc_name
   }
@@ -69,7 +69,7 @@ resource "aws_internet_gateway" "main" {
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
-#Creating a route in the route table that directs all traffic (IPv4) to the internet gateway
+  #Creating a route in the route table that directs all traffic (IPv4) to the internet gateway
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.main.id

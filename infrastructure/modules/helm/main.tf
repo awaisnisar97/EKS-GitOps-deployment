@@ -3,6 +3,13 @@ resource "helm_release" "example" {
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
   version    = "1.14.0"
+
+  set = [
+  {
+    name  = "clusterName"
+    value = var.cluster_name
+  }
+]
 }
 
 

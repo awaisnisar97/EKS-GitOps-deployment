@@ -6,30 +6,33 @@ metadata:
 spec:
   project: default
   source:
-    chart: nginx-ingress
     repoURL: ghcr.io/nginx/charts
+    chart: nginx-ingress
     targetRevision: "2.9.0"
-    helm: 
-      valuesObject: 
-        controller: 
-          service: 
-            type: LoadBalancer 
-            loadBalancerClass: service.k8s.aws/nlb
-            annotations: 
-              service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
-              service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+    helm:
+      valuesObject:
+        controller:
           replicaCount: 2
-          topologySpreadConstraints: 
+          topologySpreadConstraints:
             - maxSkew: 1
-              whenUnsatisfiable: "ScheduleAnyway"
+              minDomains: 2
               topologyKey: topology.kubernetes.io/zone
-              labelSelector: 
+              whenUnsatisfiable: DoNotSchedule
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: nginx-ingress
+                  app.kubernetes.io/instance: nginx
+          service:
+            loadBalancerClass: service.k8s.aws/nlb
+            annotations:
+              service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+              service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
   destination:
-    server: "https://kubernetes.default.svc"
+    server: https://kubernetes.default.svc
     namespace: nginx
   syncPolicy:
     automated:
-     selfHeal: true
-     prune: true
+      selfHeal: true
+      prune: true
     syncOptions:
       - CreateNamespace=true
